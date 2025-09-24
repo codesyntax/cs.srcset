@@ -53,7 +53,7 @@ setup(
     zip_safe=False,
     python_requires=">=3.7",
     install_requires=[
-        "setuptools<",
+        "setuptools",
         # -*- Extra requirements: -*-
         "plone.namedfile",
     ],
