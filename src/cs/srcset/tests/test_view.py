@@ -1,12 +1,70 @@
-from cs.srcset.testing import CS_SRCSET_INTEGRATION_TESTING
+import unittest
 from doctest import _ellipsis_match
 
-import unittest
+from cs.srcset.testing import CS_SRCSET_INTEGRATION_TESTING
+from cs.srcset.view import SrcSetView
+from DateTime import DateTime
+from OFS.SimpleItem import SimpleItem
+from plone.namedfile.field import NamedImage as NamedImageField
+from plone.namedfile.interfaces import IImageScaleTraversable
+from plone.namedfile.tests import MockNamedImage, getFile
+from plone.rfc822.interfaces import IPrimaryFieldInfo
+from zope.annotation import IAttributeAnnotatable
+from zope.component import adapter, getSiteManager
+from zope.interface import implementer
+
+
+class IHasImage(IImageScaleTraversable):
+    image = NamedImageField()
+
+
+@implementer(IAttributeAnnotatable, IHasImage)
+class DummyContent(SimpleItem):
+    image = None
+    modified = DateTime
+    id = __name__ = "item"
+    title = "foo"
+
+    def Title(self):
+        return self.title
+
+    def UID(self):
+        return "dummy_uuid"
+
+
+@implementer(IPrimaryFieldInfo)
+@adapter(DummyContent)
+class PrimaryFieldInfo:
+    def __init__(self, context):
+        self.context = context
+        self.fieldname = "image"
+        self.field = self.context.image
+
+    @property
+    def value(self):
+        return self.field
 
 
 class TestView(unittest.TestCase):
 
     layer = CS_SRCSET_INTEGRATION_TESTING
+
+    def setUp(self):
+        sm = getSiteManager()
+        sm.registerAdapter(PrimaryFieldInfo)
+
+        data = getFile("image.png")
+        item = DummyContent()
+        item.image = MockNamedImage(data, "image/png", "image.png")
+        self.layer["app"]._setOb("item", item)
+        self.item = self.layer["app"].item
+        self._orig_sizes = SrcSetView._sizes
+        self.scaling = SrcSetView(self.item, None)
+
+    def tearDown(self):
+        SrcSetView._sizes = self._orig_sizes
+        sm = getSiteManager()
+        sm.unregisterAdapter(PrimaryFieldInfo)
 
     def testImgSrcSet(self):
         """test rendered srcset values"""

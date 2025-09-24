@@ -75,6 +75,10 @@ class SrcSetView(BrowserView):
                 self._sizes = sizes_util() or {}
         return self._sizes
 
+    @available_sizes.setter
+    def available_sizes(self, value):
+        self._sizes = value
+
     def modified(self, fieldname=None):
         """Provide a callable to return the modification time of content
         items, so stored image scales can be invalidated.

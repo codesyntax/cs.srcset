@@ -21,13 +21,8 @@ class CsSrcsetLayer(PloneSandboxLayer):
         import plone.app.dexterity
 
         self.loadZCML(package=plone.app.dexterity)
-        import plone.restapi
 
-        self.loadZCML(package=plone.restapi)
         self.loadZCML(package=cs.srcset)
-
-    def setUpPloneSite(self, portal):
-        applyProfile(portal, "cs.srcset:default")
 
 
 CS_SRCSET_FIXTURE = CsSrcsetLayer()
