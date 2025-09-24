@@ -29,7 +29,7 @@ Backport of the `srcset` method added to the `@@images` view in plone.namedfile 
 Features
 --------
 
-It adds a view called `@@image-srcset` that has a single method called `srcset` to be able to create an `img` tag with the `srcset` and `sizes`
+It adds a view called `@@images-srcset` that has a single method called `srcset` to be able to create an `img` tag with the `srcset` and `sizes`
 attributes to render responsive images.
 
 Read more about responsive images and its use in the `MDN documentation`_
