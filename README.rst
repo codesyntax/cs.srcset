@@ -31,33 +31,34 @@
 cs.srcset
 =========
 
-An add-on for Plone
+Backport of the `srcset` method added to the `@@images` view in plone.namedfile 7.1.0 to be able to use it in older Plone versions
 
 Features
 --------
 
-- Can be bullet points
+It adds a view called `@@image-srcset` that has a single method called `srcset` to be able to create an `img` tag with the `srcset` and `sizes`
+attributes to render responsive images.
 
-
-Examples
---------
-
-This add-on can be seen in action at the following sites:
-- Is there a page on the internet where everybody can see the features?
+Read more about responsive images and its use in the `MDN documentation`_
 
 
 Documentation
 -------------
 
-Full documentation for end users can be found in the "docs" folder, and is also available online at http://docs.plone.org/foo/bar
+::
+    <img tal:define="images context/@@images-srcset;"
+     tal:replace="structure python:images.srcset(
+                                 fieldname='image',
+                                 scale_in_src='huge',
+                                 sizes='(min-width: 570px) 550px,90vw',
+                                 css_class='mini w-100 h-100 responsive-3-2',
+                                 alt=context.Title(),
+                                 title=context.Title(),
+                                 loading='lazy')"
+    />
 
 
-Translations
-------------
 
-This product has been translated into
-
-- Klingon (thanks, K'Plai)
 
 
 Installation
@@ -76,36 +77,23 @@ Install cs.srcset by adding it to your buildout::
 and then running ``bin/buildout``
 
 
-Authors
--------
-
-Provided by awesome people ;)
-
-
-Contributors
-------------
-
-Put your name here, you deserve it!
-
-- ?
-
 
 Contribute
 ----------
 
-- Issue Tracker: https://github.com/collective/cs.srcset/issues
-- Source Code: https://github.com/collective/cs.srcset
-- Documentation: https://docs.plone.org/foo/bar
+- Issue Tracker: https://github.com/codesyntax/cs.srcset/issues
+- Source Code: https://github.com/codesyntax/cs.srcset
 
 
 Support
 -------
 
 If you are having issues, please let us know.
-We have a mailing list located at: project@example.com
 
 
 License
 -------
 
 The project is licensed under the GPLv2.
+
+.. _`MDN documentation`: https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images
