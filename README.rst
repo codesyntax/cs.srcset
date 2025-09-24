@@ -5,13 +5,6 @@
 .. image:: https://github.com/codesyntax/cs.srcset/actions/workflows/plone-package.yml/badge.svg
     :target: https://github.com/codesyntax/cs.srcset/actions/workflows/plone-package.yml
 
-.. image:: https://coveralls.io/repos/github/codesyntax/cs.srcset/badge.svg?branch=main
-    :target: https://coveralls.io/github/codesyntax/cs.srcset?branch=main
-    :alt: Coveralls
-
-.. image:: https://codecov.io/gh/codesyntax/cs.srcset/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/codesyntax/cs.srcset
-
 .. image:: https://img.shields.io/pypi/v/cs.srcset.svg
     :target: https://pypi.python.org/pypi/cs.srcset/
     :alt: Latest Version
