@@ -3,4 +3,4 @@
 from zope.i18nmessageid import MessageFactory
 
 
-_ = MessageFactory('cs.srcset')
+_ = MessageFactory("cs.srcset")

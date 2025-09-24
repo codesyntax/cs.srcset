@@ -16,6 +16,7 @@ from plone.namedfile.scaling import ImageScale
 logger = logging.getLogger(__name__)
 _marker = object()
 
+
 def _image_tag_from_values(*values):
     """Turn list of tuples into an img tag.
 
@@ -33,6 +34,7 @@ def _image_tag_from_values(*values):
     parts.append("/>")
 
     return " ".join(parts)
+
 
 class SrcSetView(BrowserView):
 

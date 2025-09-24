@@ -19,13 +19,15 @@ class CsSrcsetLayer(PloneSandboxLayer):
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
         import plone.app.dexterity
+
         self.loadZCML(package=plone.app.dexterity)
         import plone.restapi
+
         self.loadZCML(package=plone.restapi)
         self.loadZCML(package=cs.srcset)
 
     def setUpPloneSite(self, portal):
-        applyProfile(portal, 'cs.srcset:default')
+        applyProfile(portal, "cs.srcset:default")
 
 
 CS_SRCSET_FIXTURE = CsSrcsetLayer()
@@ -33,13 +35,13 @@ CS_SRCSET_FIXTURE = CsSrcsetLayer()
 
 CS_SRCSET_INTEGRATION_TESTING = IntegrationTesting(
     bases=(CS_SRCSET_FIXTURE,),
-    name='CsSrcsetLayer:IntegrationTesting',
+    name="CsSrcsetLayer:IntegrationTesting",
 )
 
 
 CS_SRCSET_FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(CS_SRCSET_FIXTURE,),
-    name='CsSrcsetLayer:FunctionalTesting',
+    name="CsSrcsetLayer:FunctionalTesting",
 )
 
 
@@ -49,5 +51,5 @@ CS_SRCSET_ACCEPTANCE_TESTING = FunctionalTesting(
         REMOTE_LIBRARY_BUNDLE_FIXTURE,
         z2.ZSERVER_FIXTURE,
     ),
-    name='CsSrcsetLayer:AcceptanceTesting',
+    name="CsSrcsetLayer:AcceptanceTesting",
 )
