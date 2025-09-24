@@ -85,6 +85,8 @@ Install cs.srcset by adding it to your buildout::
 
 and then running ``bin/buildout``
 
+**NOTE**: You do not need to install the product in the Plone add-ons controlpanel, there is nothing to be installed.
+
 
 
 Contribute
