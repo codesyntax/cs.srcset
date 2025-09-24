@@ -45,7 +45,8 @@ Read more about responsive images and its use in the `MDN documentation`_
 Documentation
 -------------
 
-::
+You should use this view like this ::
+
     <img tal:define="images context/@@images-srcset;"
      tal:replace="structure python:images.srcset(
                                  fieldname='image',
@@ -56,6 +57,14 @@ Documentation
                                  title=context.Title(),
                                  loading='lazy')"
     />
+
+The meaning of each parameter is the following:
+
+- fieldname: name of the field where the image is stored
+- scale_in_src: name of the scale that will be used to render the src attribute
+- sizes: the value of the sizes attribute in the output tag
+- css_class: CSS classes added to the img tag
+- additional attributes: any aditional attribute that will be rendered in the img tag, useful to add the title, alt, loading, fetchpriority, id, and other attributes.
 
 
 
