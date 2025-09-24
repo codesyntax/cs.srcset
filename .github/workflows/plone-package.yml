@@ -19,7 +19,29 @@ jobs:
           - "Plone52"
           - "Plone60"
           - "Plone61"
-        python-version: [3.7, 3.8, 3.9, 3.10, 3.11, 3.12]
+        python-version: [3.7, 3.8, 3.9, 3.10, 3.11, 3.12, 3.12]
+
+        exclude:
+          - plone-version: "Plone52"
+            python-version: 3.9
+          - plone-version: "Plone52"
+            python-version: 3.10
+          - plone-version: "Plone52"
+            python-version: 3.11
+          - plone-version: "Plone52"
+            python-version: 3.12
+          - plone-version: "Plone52"
+            python-version: 3.13
+          - plone-version: "Plone60"
+            python-version: 3.7
+          - plone-version: "Plone60"
+            python-version: 3.8
+          - plone-version: "Plone61"
+            python-version: 3.7
+          - plone-version: "Plone61"
+            python-version: 3.8
+          - plone-version: "Plone61"
+            python-version: 3.9
 
     steps:
       - uses: actions/setup-python@v4
