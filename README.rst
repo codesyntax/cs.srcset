@@ -2,15 +2,15 @@
    If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide.html
    This text does not appear on PyPI or github. It is a comment.
 
-.. image:: https://github.com/collective/cs.srcset/actions/workflows/plone-package.yml/badge.svg
-    :target: https://github.com/collective/cs.srcset/actions/workflows/plone-package.yml
+.. image:: https://github.com/codesyntax/cs.srcset/actions/workflows/plone-package.yml/badge.svg
+    :target: https://github.com/codesyntax/cs.srcset/actions/workflows/plone-package.yml
 
-.. image:: https://coveralls.io/repos/github/collective/cs.srcset/badge.svg?branch=main
-    :target: https://coveralls.io/github/collective/cs.srcset?branch=main
+.. image:: https://coveralls.io/repos/github/codesyntax/cs.srcset/badge.svg?branch=main
+    :target: https://coveralls.io/github/codesyntax/cs.srcset?branch=main
     :alt: Coveralls
 
-.. image:: https://codecov.io/gh/collective/cs.srcset/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/collective/cs.srcset
+.. image:: https://codecov.io/gh/codesyntax/cs.srcset/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/codesyntax/cs.srcset
 
 .. image:: https://img.shields.io/pypi/v/cs.srcset.svg
     :target: https://pypi.python.org/pypi/cs.srcset/
