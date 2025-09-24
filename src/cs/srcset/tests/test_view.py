@@ -1,7 +1,7 @@
-import unittest
+from cs.srcset.testing import CS_SRCSET_INTEGRATION_TESTING
 from doctest import _ellipsis_match
 
-from cs.srcset.testing import CS_SRCSET_INTEGRATION_TESTING
+import unittest
 
 
 class TestView(unittest.TestCase):

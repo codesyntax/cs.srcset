@@ -1,17 +1,19 @@
-import functools
-import logging
-from xml.sax.saxutils import quoteattr
-
 from AccessControl.ZopeGuards import guarded_getattr
 from Acquisition import aq_base
 from DateTime import DateTime
 from plone.namedfile.interfaces import IAvailableSizes
+from plone.namedfile.scaling import ImageScale
 from plone.rfc822.interfaces import IPrimaryFieldInfo
 from plone.scale.storage import IImageScaleStorage
 from Products.Five.browser import BrowserView
+from xml.sax.saxutils import quoteattr
 from zExceptions import Unauthorized
-from zope.component import getMultiAdapter, queryUtility
-from plone.namedfile.scaling import ImageScale
+from zope.component import getMultiAdapter
+from zope.component import queryUtility
+
+import functools
+import logging
+
 
 logger = logging.getLogger(__name__)
 _marker = object()
