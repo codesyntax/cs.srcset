@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.1 (unreleased)
+1.1 (2025-10-14)
 ----------------
 
 - Add default width and heigth attributes if none provided when using the srcset method
