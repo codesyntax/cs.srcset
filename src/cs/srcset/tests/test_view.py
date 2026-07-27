@@ -1,17 +1,19 @@
-import unittest
-from doctest import _ellipsis_match
-
 from cs.srcset.testing import CS_SRCSET_INTEGRATION_TESTING
 from cs.srcset.view import SrcSetView
 from DateTime import DateTime
+from doctest import _ellipsis_match
 from OFS.SimpleItem import SimpleItem
 from plone.namedfile.field import NamedImage as NamedImageField
 from plone.namedfile.interfaces import IImageScaleTraversable
-from plone.namedfile.tests import MockNamedImage, getFile
+from plone.namedfile.tests import getFile
+from plone.namedfile.tests import MockNamedImage
 from plone.rfc822.interfaces import IPrimaryFieldInfo
 from zope.annotation import IAttributeAnnotatable
-from zope.component import adapter, getSiteManager
+from zope.component import adapter
+from zope.component import getSiteManager
 from zope.interface import implementer
+
+import unittest
 
 
 class IHasImage(IImageScaleTraversable):
