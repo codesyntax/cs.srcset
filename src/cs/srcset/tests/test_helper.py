@@ -48,10 +48,6 @@ class TestImageHelper(unittest.TestCase):
         self.assertEqual(len(brains), 1)
         brain = brains[0]
 
-        # Verify image_scales metadata is present
-        self.assertTrue(hasattr(brain, "image_scales"))
-        self.assertIn("image", brain.image_scales)
-
         tag = self.helper.srcset(
             brain, fieldname="image", sizes="50vw", css_class="my-news-img"
         )

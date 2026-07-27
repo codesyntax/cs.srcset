@@ -6,9 +6,12 @@ from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
 
 try:
-    from plone.testing import z2
+    from plone.testing import zope as z2
 except ImportError:
-    z2 = None
+    try:
+        from plone.testing import z2
+    except ImportError:
+        z2 = None
 
 import cs.srcset
 
