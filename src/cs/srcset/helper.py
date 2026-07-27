@@ -65,20 +65,20 @@ class ImageHelper(BrowserView):
 
         srcset = ", ".join(srcset_parts)
 
-        alt = kwargs.get("alt")
-        if alt is None:
+        # Merge parameters
+        merged = kwargs.copy()
+        if "alt" not in merged:
             alt = getattr(item, "Title", "")
             if callable(alt):
                 alt = alt()
+            merged["alt"] = alt
 
-        return self._build_tag(
-            src_url,
-            srcset=srcset,
-            width=data.get("width"),
-            height=data.get("height"),
-            alt=alt,
-            **kwargs,
-        )
+        if "width" not in merged:
+            merged["width"] = data.get("width")
+        if "height" not in merged:
+            merged["height"] = data.get("height")
+
+        return self._build_tag(src_url, srcset=srcset, **merged)
 
     def _generate_fixed_tag(self, item, data, **kwargs):
         """Manually construct a fixed <img> tag from brain metadata."""
@@ -101,23 +101,20 @@ class ImageHelper(BrowserView):
             width = data.get("width")
             height = data.get("height")
 
-        # Override width/height if passed in kwargs (for tag method)
-        width = kwargs.get("width", width)
-        height = kwargs.get("height", height)
-
-        alt = kwargs.get("alt")
-        if alt is None:
+        # Merge parameters
+        merged = kwargs.copy()
+        if "alt" not in merged:
             alt = getattr(item, "Title", "")
             if callable(alt):
                 alt = alt()
+            merged["alt"] = alt
 
-        return self._build_tag(
-            src_url,
-            width=width,
-            height=height,
-            alt=alt,
-            **kwargs,
-        )
+        if "width" not in merged:
+            merged["width"] = width
+        if "height" not in merged:
+            merged["height"] = height
+
+        return self._build_tag(src_url, **merged)
 
     def _build_tag(self, src, srcset=None, **kwargs):
         """Helper to build the <img> tag string."""
@@ -125,18 +122,19 @@ class ImageHelper(BrowserView):
         if srcset:
             tag += f' srcset="{srcset}"'
 
-        # Possible attributes from kwargs
-        attrs = ("sizes", "alt", "title", "loading", "width", "height")
-        for attr in attrs:
-            val = kwargs.get(attr)
-            if val:
-                tag += f' {attr}="{val}"'
-            elif attr == "loading" and "loading" not in kwargs:
-                tag += ' loading="lazy"'
+        # Handle loading default
+        if "loading" not in kwargs:
+            tag += ' loading="lazy"'
 
-        css_class = kwargs.get("css_class") or kwargs.get("class")
+        # Handle class/css_class
+        css_class = kwargs.pop("css_class", None) or kwargs.pop("class", None)
         if css_class:
             tag += f' class="{css_class}"'
+
+        # Render remaining attributes
+        for attr, val in sorted(kwargs.items()):
+            if val is not None:
+                tag += f' {attr}="{val}"'
 
         tag += " />"
         return tag
