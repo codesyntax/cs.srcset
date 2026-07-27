@@ -18,10 +18,15 @@ class CsSrcsetLayer(PloneSandboxLayer):
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
         import plone.app.dexterity
+        import plone.app.contenttypes
 
         self.loadZCML(package=plone.app.dexterity)
+        self.loadZCML(package=plone.app.contenttypes)
 
         self.loadZCML(package=cs.srcset)
+
+    def setUpPloneSite(self, portal):
+        applyProfile(portal, "plone.app.contenttypes:default")
 
 
 CS_SRCSET_FIXTURE = CsSrcsetLayer()
