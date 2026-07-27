@@ -26,9 +26,9 @@ jobs:
           - plone-version: "Plone52"
             python-version: 3.9
           - plone-version: "Plone52"
-            python-version: 3.10
+            python-version: "3.10"
           - plone-version: "Plone52"
-            python-version: 3.11
+            python-version: "3.11"
           - plone-version: "Plone52"
             python-version: 3.12
           - plone-version: "Plone52"
@@ -39,13 +39,21 @@ jobs:
           - plone-version: "Plone60"
             python-version: 3.8
           - plone-version: "Plone60"
+            python-version: 3.12
+          - plone-version: "Plone60"
+            python-version: 3.13
+          - plone-version: "Plone60"
             python-version: 3.14
+
           - plone-version: "Plone61"
             python-version: 3.8
           - plone-version: "Plone61"
             python-version: 3.9
           - plone-version: "Plone61"
             python-version: 3.14
+
+          - plone-version: "Plone62"
+            python-version: 3.8
           - plone-version: "Plone62"
             python-version: 3.9
 

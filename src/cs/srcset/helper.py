@@ -34,9 +34,15 @@ class ImageHelper(BrowserView):
         obj = item.getObject() if hasattr(item, "getObject") else item
         try:
             scales = obj.restrictedTraverse("@@images")
-            method = getattr(scales, method_name)
-            res = method(fieldname, **kwargs)
-            return res if res is not None else ""
+            if hasattr(scales, method_name):
+                method = getattr(scales, method_name)
+                res = method(fieldname, **kwargs)
+                return res if res is not None else ""
+
+            # If @@images doesn't have it, try our own backport view
+            if method_name == "srcset":
+                backport = obj.restrictedTraverse("@@images-srcset")
+                return backport.srcset(fieldname, **kwargs)
         except Exception:
             return ""
 
