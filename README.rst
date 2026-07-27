@@ -86,8 +86,13 @@ Parameters:
 
 - ``item``: Either a catalog brain (recommended for performance) or a Plone object.
 - ``fieldname``: The name of the image field (default: ``image``).
+- ``scale_in_src``: (Only for the ``srcset`` method) The name of the scale to use for the ``src`` attribute (default: ``huge``).
 - ``scale``: (Only for the ``tag`` method) The name of the scale to use for the ``src``.
-- ``**kwargs``: Any other HTML attributes (``alt``, ``title``, ``loading``, ``css_class``, etc.). ``loading`` defaults to ``lazy``.
+- ``**kwargs``: Any other HTML attributes (``alt``, ``title``, ``loading``, ``css_class``, etc.).
+
+Note: Unlike standard Plone views, this helper does **not** provide default values for ``alt`` or ``loading`` attributes.
+Developers must provide them explicitly in the template if needed.
+However, it **does** automatically provide ``width`` and ``height`` based on the rendered scale to prevent layout shifts.
 
 
 

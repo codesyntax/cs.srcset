@@ -53,12 +53,33 @@ class TestImageHelper(unittest.TestCase):
         )
 
         # Assertions on generated tag
+        # By default no alt, no loading
         self.assertIn('src="http://nohost/plone/news1/@@images/image', tag)
         self.assertIn('srcset="', tag)
         self.assertIn('sizes="50vw"', tag)
         self.assertIn('class="my-news-img"', tag)
-        self.assertIn('alt="News 1"', tag)
-        self.assertIn('loading="lazy"', tag)
+        self.assertNotIn('alt="', tag)
+        self.assertNotIn('loading="', tag)
+        # width and height should be present
+        self.assertIn('width="', tag)
+        self.assertIn('height="', tag)
+
+    def test_news_item_srcset_with_explicit_attributes(self):
+        """Test srcset with explicit alt and loading attributes."""
+        brains = api.content.find(id="news1")
+        brain = brains[0]
+
+        tag = self.helper.srcset(
+            brain,
+            fieldname="image",
+            alt="My Alt",
+            loading="eager",
+            title="My Title",
+        )
+
+        self.assertIn('alt="My Alt"', tag)
+        self.assertIn('loading="eager"', tag)
+        self.assertIn('title="My Title"', tag)
 
     def test_news_item_srcset_object(self):
         """Test srcset with a News Item object (fallback path)."""
@@ -140,3 +161,18 @@ class TestImageHelper(unittest.TestCase):
         tag_logo = self.helper.srcset(brain, fieldname="logo", sizes="10vw")
         self.assertIn('srcset="', tag_logo)
         self.assertIn("logo", tag_logo)
+
+    def test_srcset_scale_in_src(self):
+        """Test selecting a specific scale for the src attribute in srcset."""
+        brains = api.content.find(id="news1")
+        brain = brains[0]
+
+        # If 'huge' is available in metadata, it should use it.
+        # News Item LeadImage behavior usually has 'huge' scale.
+        tag = self.helper.srcset(brain, fieldname="image", scale_in_src="teaser")
+        self.assertIn("/@@images/image-", tag)
+        self.assertIn('src="http://nohost/plone/news1/@@images/image', tag)
+        # We can check if dimensions match teaser if we knew them,
+        # but at least check it doesn't crash and has width/height.
+        self.assertIn('width="', tag)
+        self.assertIn('height="', tag)

@@ -9,12 +9,14 @@ class IImageHelper(Interface):
 
 @implementer(IImageHelper)
 class ImageHelper(BrowserView):
-    def srcset(self, item, fieldname="image", **kwargs):
+    def srcset(self, item, fieldname="image", scale_in_src="huge", **kwargs):
         """Generate srcset img tag from brain metadata or fallback to getObject()."""
+        kwargs["scale_in_src"] = scale_in_src
         return self._render("srcset", item, fieldname, **kwargs)
 
-    def tag(self, item, fieldname="image", **kwargs):
+    def tag(self, item, fieldname="image", scale=None, **kwargs):
         """Generate fixed img tag from brain metadata or fallback to getObject()."""
+        kwargs["scale"] = scale
         return self._render("tag", item, fieldname, **kwargs)
 
     def _render(self, method_name, item, fieldname, **kwargs):
@@ -36,7 +38,10 @@ class ImageHelper(BrowserView):
             scales = obj.restrictedTraverse("@@images")
             if hasattr(scales, method_name):
                 method = getattr(scales, method_name)
-                res = method(fieldname, **kwargs)
+                # Remove internal helper params before passing to @@images
+                call_kwargs = kwargs.copy()
+                call_kwargs.pop("scale_in_src", None)
+                res = method(fieldname, **call_kwargs)
                 return res if res is not None else ""
 
             # If @@images doesn't have it, try our own backport view
@@ -53,30 +58,35 @@ class ImageHelper(BrowserView):
             base_url = base_url()
 
         scales = data.get("scales", {})
-        src_url = f"{base_url}/{data['download']}"
+
+        # Determine src scale
+        scale_in_src = kwargs.pop("scale_in_src", "huge")
+        if scale_in_src in scales:
+            scale_info = scales[scale_in_src]
+            src_url = f"{base_url}/{scale_info['download']}"
+            width = scale_info.get("width")
+            height = scale_info.get("height")
+        else:
+            src_url = f"{base_url}/{data['download']}"
+            width = data.get("width")
+            height = data.get("height")
 
         srcset_parts = []
         sorted_scales = sorted(scales.items(), key=lambda x: x[1].get("width", 0))
         for _, scale_info in sorted_scales:
             scale_url = f"{base_url}/{scale_info['download']}"
-            width = scale_info.get("width")
-            if width:
-                srcset_parts.append(f"{scale_url} {width}w")
+            swidth = scale_info.get("width")
+            if swidth:
+                srcset_parts.append(f"{scale_url} {swidth}w")
 
         srcset = ", ".join(srcset_parts)
 
         # Merge parameters
         merged = kwargs.copy()
-        if "alt" not in merged:
-            alt = getattr(item, "Title", "")
-            if callable(alt):
-                alt = alt()
-            merged["alt"] = alt
-
         if "width" not in merged:
-            merged["width"] = data.get("width")
+            merged["width"] = width
         if "height" not in merged:
-            merged["height"] = data.get("height")
+            merged["height"] = height
 
         return self._build_tag(src_url, srcset=srcset, **merged)
 
@@ -89,7 +99,7 @@ class ImageHelper(BrowserView):
         scales = data.get("scales", {})
 
         # If a specific scale is requested via scale parameter
-        scale_name = kwargs.get("scale")
+        scale_name = kwargs.pop("scale", None)
         if scale_name and scale_name in scales:
             scale_info = scales[scale_name]
             src_url = f"{base_url}/{scale_info['download']}"
@@ -103,12 +113,6 @@ class ImageHelper(BrowserView):
 
         # Merge parameters
         merged = kwargs.copy()
-        if "alt" not in merged:
-            alt = getattr(item, "Title", "")
-            if callable(alt):
-                alt = alt()
-            merged["alt"] = alt
-
         if "width" not in merged:
             merged["width"] = width
         if "height" not in merged:
@@ -121,10 +125,6 @@ class ImageHelper(BrowserView):
         tag = f'<img src="{src}"'
         if srcset:
             tag += f' srcset="{srcset}"'
-
-        # Handle loading default
-        if "loading" not in kwargs:
-            tag += ' loading="lazy"'
 
         # Handle class/css_class
         css_class = kwargs.pop("css_class", None) or kwargs.pop("class", None)
