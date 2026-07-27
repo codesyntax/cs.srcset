@@ -46,9 +46,12 @@ class ImageHelper(BrowserView):
         except Exception:
             return ""
 
-    def _generate_srcset_tag(self, brain, data, **kwargs):
+    def _generate_srcset_tag(self, item, data, **kwargs):
         """Manually construct the srcset <img> tag from brain metadata."""
-        base_url = brain.getURL()
+        base_url = item.getURL() if hasattr(item, "getURL") else item.absolute_url()
+        if callable(base_url):
+            base_url = base_url()
+
         scales = data.get("scales", {})
         src_url = f"{base_url}/{data['download']}"
 
@@ -62,18 +65,27 @@ class ImageHelper(BrowserView):
 
         srcset = ", ".join(srcset_parts)
 
+        alt = kwargs.get("alt")
+        if alt is None:
+            alt = getattr(item, "Title", "")
+            if callable(alt):
+                alt = alt()
+
         return self._build_tag(
             src_url,
             srcset=srcset,
             width=data.get("width"),
             height=data.get("height"),
-            alt=kwargs.get("alt", getattr(brain, "Title", "")),
+            alt=alt,
             **kwargs,
         )
 
-    def _generate_fixed_tag(self, brain, data, **kwargs):
+    def _generate_fixed_tag(self, item, data, **kwargs):
         """Manually construct a fixed <img> tag from brain metadata."""
-        base_url = brain.getURL()
+        base_url = item.getURL() if hasattr(item, "getURL") else item.absolute_url()
+        if callable(base_url):
+            base_url = base_url()
+
         scales = data.get("scales", {})
 
         # If a specific scale is requested via scale parameter
@@ -93,11 +105,17 @@ class ImageHelper(BrowserView):
         width = kwargs.get("width", width)
         height = kwargs.get("height", height)
 
+        alt = kwargs.get("alt")
+        if alt is None:
+            alt = getattr(item, "Title", "")
+            if callable(alt):
+                alt = alt()
+
         return self._build_tag(
             src_url,
             width=width,
             height=height,
-            alt=kwargs.get("alt", getattr(brain, "Title", "")),
+            alt=alt,
             **kwargs,
         )
 

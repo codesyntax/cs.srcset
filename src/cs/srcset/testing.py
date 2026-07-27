@@ -5,9 +5,12 @@ from plone.app.testing import IntegrationTesting
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
 
-import cs.srcset
+try:
+    from plone.testing import z2
+except ImportError:
+    z2 = None
 
-# from plone.testing import z2
+import cs.srcset
 
 
 class CsSrcsetLayer(PloneSandboxLayer):
@@ -25,6 +28,9 @@ class CsSrcsetLayer(PloneSandboxLayer):
         self.loadZCML(package=plone.app.contenttypes)
 
         self.loadZCML(package=cs.srcset)
+
+        if z2 is not None:
+            z2.installProduct(app, "plone.app.contenttypes")
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, "plone.app.contenttypes:default")
