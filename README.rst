@@ -24,19 +24,23 @@
 cs.srcset
 =========
 
-Backport of the `srcset` method added to the `@@images` view in plone.namedfile 7.1.0 to be able to use it in older Plone versions
+Backport of the `srcset` method added to the `@@images` view in plone.namedfile 7.1.0 to be able to use it in older Plone versions.
+It also includes an optimized `@@image_helper` view for Plone 6+ that uses catalog metadata to avoid N+1 performance issues in listings.
 
 Features
 --------
 
-It adds a view called `@@images-srcset` that has a single method called `srcset` to be able to create an `img` tag with the `srcset` and `sizes`
-attributes to render responsive images.
+- Adds a view called `@@images-srcset` for older Plone versions (backport).
+- Adds a view called `@@image_helper` optimized for Plone 6+ catalog metadata.
 
 Read more about responsive images and its use in the `MDN documentation`_
 
 
 Documentation
 -------------
+
+@@images-srcset
+~~~~~~~~~~~~~~~
 
 You should use this view like this ::
 
@@ -58,6 +62,37 @@ The meaning of each parameter is the following:
 - sizes: the value of the sizes attribute in the output tag
 - css_class: CSS classes added to the img tag
 - additional attributes: any aditional attribute that will be rendered in the img tag, useful to add the title, alt, loading, fetchpriority, id, and other attributes.
+
+
+@@image_helper
+~~~~~~~~~~~~~~
+
+This view is designed for high-performance listings in Plone 6.
+It attempts to generate the ``<img>`` tag using only catalog metadata (``image_scales`` attribute in brains), avoiding expensive ``getObject()`` calls.
+If metadata is missing, it gracefully falls back to the standard ``@@images`` view logic.
+
+You should use this view like this ::
+
+    <tal:block tal:define="helper context/@@image_helper">
+        <div tal:replace="structure python:helper.srcset(item, fieldname='image', sizes='25vw', css_class='my-img')" />
+    </tal:block>
+
+Available methods:
+
+- ``srcset(item, fieldname='image', **kwargs)``: Returns a responsive ``<img>`` tag with the ``srcset`` attribute.
+- ``tag(item, fieldname='image', scale=None, **kwargs)``: Returns a fixed ``<img>`` tag (optionally for a specific scale).
+
+Parameters:
+
+- ``item``: Either a catalog brain (recommended for performance) or a Plone object.
+- ``fieldname``: The name of the image field (default: ``image``).
+- ``scale_in_src``: (Only for the ``srcset`` method) The name of the scale to use for the ``src`` attribute (default: ``huge``).
+- ``scale``: (Only for the ``tag`` method) The name of the scale to use for the ``src``.
+- ``**kwargs``: Any other HTML attributes (``alt``, ``title``, ``loading``, ``css_class``, etc.).
+
+Note: Unlike standard Plone views, this helper does **not** provide default values for ``alt`` or ``loading`` attributes.
+Developers must provide them explicitly in the template if needed.
+However, it **does** automatically provide ``width`` and ``height`` based on the rendered scale to prevent layout shifts.
 
 
 

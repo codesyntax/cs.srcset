@@ -14,7 +14,6 @@ from zope.component import queryUtility
 import functools
 import logging
 
-
 logger = logging.getLogger(__name__)
 _marker = object()
 
