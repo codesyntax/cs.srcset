@@ -5,11 +5,8 @@ build-backend = "setuptools.build_meta"
 [tool.towncrier]
 directory = "news/"
 filename = "CHANGES.rst"
-start_string = "<!-- towncrier release notes start -->\n"
-title_format = "## {version} ({project_date})"
-template = "news/.changelog_template.jinja"
-issue_format = "[#{issue}](https://github.com/codesyntax/cs_dynamicpages/issues/{issue})"
-underlines = ["", "", ""]
+title_format = "{version} ({project_date})"
+underlines = ["-", ""]
 
 [[tool.towncrier.type]]
 directory = "breaking"
@@ -38,5 +35,5 @@ showcontent = true
 
 [[tool.towncrier.type]]
 directory = "tests"
-name = "Tests"
+name = "Tests:"
 showcontent = true
