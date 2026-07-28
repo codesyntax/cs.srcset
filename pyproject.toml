@@ -1,6 +1,5 @@
 [build-system]
-requires = ["setuptools>=68.2,<=75.8.0"]
-build-backend = "setuptools.build_meta"
+requires = ["setuptools>=68.2,<83", "wheel"]
 
 [tool.towncrier]
 directory = "news/"
