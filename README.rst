@@ -40,7 +40,6 @@ Documentation
 -------------
 
 @@images-srcset
-~~~~~~~~~~~~~~~
 
 You should use this view like this ::
 
@@ -65,7 +64,6 @@ The meaning of each parameter is the following:
 
 
 @@image_helper
-~~~~~~~~~~~~~~
 
 This view is designed for high-performance listings in Plone 6.
 It attempts to generate the ``<img>`` tag using only catalog metadata (``image_scales`` attribute in brains), avoiding expensive ``getObject()`` calls.
