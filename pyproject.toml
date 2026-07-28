@@ -4,12 +4,39 @@ build-backend = "setuptools.build_meta"
 
 [tool.towncrier]
 directory = "news/"
-filename = "CHANGES.rst"
-title_format = "{version} (unreleased)"
-underlines = ["", "-"]
-issue_format = "[#{issue}](https://github.com/codesyntax/cs.srcset/pull/{issue})"
-type = [
-    { directory = "breaking", name = "Breaking changes", showcontent = true },
-    { directory = "feature", name = "New features", showcontent = true },
-    { directory = "bugfix", name = "Bug fixes", showcontent = true },
-]
+filename = "CHANGELOG.md"
+start_string = "<!-- towncrier release notes start -->\n"
+title_format = "## {version} ({project_date})"
+template = "news/.changelog_template.jinja"
+issue_format = "[#{issue}](https://github.com/codesyntax/cs_dynamicpages/issues/{issue})"
+underlines = ["", "", ""]
+
+[[tool.towncrier.type]]
+directory = "breaking"
+name = "Breaking changes:"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "feature"
+name = "New features:"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "bugfix"
+name = "Bug fixes:"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "internal"
+name = "Internal:"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "documentation"
+name = "Documentation:"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "tests"
+name = "Tests"
+showcontent = true
