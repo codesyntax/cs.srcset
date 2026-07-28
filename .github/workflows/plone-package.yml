@@ -28,12 +28,10 @@ jobs:
             python-version: "3.13"
           - plone-version: "Plone60"
             python-version: "3.14"
-
           - plone-version: "Plone61"
             python-version: "3.9"
           - plone-version: "Plone61"
             python-version: "3.14"
-
           - plone-version: "Plone62"
             python-version: "3.9"
 
