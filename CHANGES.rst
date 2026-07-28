@@ -1,20 +1,20 @@
-2.0 (unreleased)
+Changelog
+=========
 
+2.0 (unreleased)
+----------------
 
 Breaking changes
-----------------
+~~~~~~~~~~~~~~~~
 
 - Remove Plone 5.2 and Python 3.7/3.8 as unsupported. @erral ([#2](https://github.com/codesyntax/cs.srcset/pull/2))
 
 
 New features
-------------
+~~~~~~~~~~~~
 
 - Add a @@image-helper view to create image URLs from catalog metadata @erral ([#2](https://github.com/codesyntax/cs.srcset/pull/2))
 
-
-Changelog
-=========
 
 
 1.2 (unreleased)
