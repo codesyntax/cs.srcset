@@ -16,24 +16,8 @@ jobs:
       fail-fast: false
       matrix:
         plone-version:
-          - "Plone60"
-          - "Plone61"
           - "Plone62"
-        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13", "3.14"]
-
-        exclude:
-          - plone-version: "Plone60"
-            python-version: "3.12"
-          - plone-version: "Plone60"
-            python-version: "3.13"
-          - plone-version: "Plone60"
-            python-version: "3.14"
-          - plone-version: "Plone61"
-            python-version: "3.9"
-          - plone-version: "Plone61"
-            python-version: "3.14"
-          - plone-version: "Plone62"
-            python-version: "3.9"
+        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
 
     steps:
       - uses: actions/setup-python@v4

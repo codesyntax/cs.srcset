@@ -1,0 +1,537 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.23: https://docutils.sourceforge.io/" />
+<title>&lt;string&gt;</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 9511 2024-01-13 09:50:07Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+Despite the name, some widely supported CSS2 features are used.
+
+See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: gray; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic, pre.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+<style type="text/css">
+body {
+font-family: Helvetica,Arial,sans-serif;
+line-height: 1.4;
+margin-left: 20%;
+margin-right: 20%;
+}
+pre.literal-block {
+background-color: #f9f9f9;
+border: 1px solid #d3d3d3;
+margin-left: 0;
+padding: 1em;
+}
+a {
+text-decoration: none;
+color: #0070d0;
+}
+a:hover, a:focus {
+text-decoration: underline;
+}
+</style></head>
+<body>
+<div class="document">
+
+
+<!-- This README is meant for consumption by humans and PyPI. PyPI can render rst files so please do not use Sphinx features.
+If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide.html
+This text does not appear on PyPI or github. It is a comment. -->
+<a class="reference external image-reference" href="https://github.com/codesyntax/cs.srcset/actions/workflows/plone-package.yml">
+<object data="https://github.com/codesyntax/cs.srcset/actions/workflows/plone-package.yml/badge.svg" type="image/svg+xml">https://github.com/codesyntax/cs.srcset/actions/workflows/plone-package.yml/badge.svg</object>
+</a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/cs.srcset/">
+<object data="https://img.shields.io/pypi/v/cs.srcset.svg" type="image/svg+xml">Latest Version</object>
+</a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/cs.srcset">
+<object data="https://img.shields.io/pypi/status/cs.srcset.svg" type="image/svg+xml">Egg Status</object>
+</a>
+<img alt="https://img.shields.io/pypi/pyversions/cs.srcset.svg?style=plastic:alt:Supported-PythonVersions" src="https://img.shields.io/pypi/pyversions/cs.srcset.svg?style=plastic:alt:Supported-PythonVersions" />
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/cs.srcset/">
+<object data="https://img.shields.io/pypi/l/cs.srcset.svg" type="image/svg+xml">License</object>
+</a>
+<div class="section" id="cs-srcset">
+<h1>cs.srcset</h1>
+<p>Backport of the <cite>srcset</cite> method added to the <cite>&#64;&#64;images</cite> view in plone.namedfile 7.1.0 to be able to use it in older Plone versions.
+It also includes an optimized <cite>&#64;&#64;image_helper</cite> view for Plone 6+ that uses catalog metadata to avoid N+1 performance issues in listings.</p>
+<div class="section" id="features">
+<h2>Features</h2>
+<ul class="simple">
+<li>Adds a view called <cite>&#64;&#64;images-srcset</cite> for older Plone versions (backport).</li>
+<li>Adds a view called <cite>&#64;&#64;image_helper</cite> optimized for Plone 6+ catalog metadata.</li>
+</ul>
+<p>Read more about responsive images and its use in the <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Guides/Responsive_images">MDN documentation</a></p>
+</div>
+<div class="section" id="documentation">
+<h2>Documentation</h2>
+<p>&#64;&#64;images-srcset</p>
+<p>You should use this view like this</p>
+<pre class="literal-block">
+&lt;img tal:define=&quot;images context/&#64;&#64;images-srcset;&quot;
+ tal:replace=&quot;structure python:images.srcset(
+                             fieldname='image',
+                             scale_in_src='huge',
+                             sizes='(min-width: 570px) 550px,90vw',
+                             css_class='mini w-100 h-100 responsive-3-2',
+                             alt=context.Title(),
+                             title=context.Title(),
+                             loading='lazy')&quot;
+/&gt;
+</pre>
+<p>The meaning of each parameter is the following:</p>
+<ul class="simple">
+<li>fieldname: name of the field where the image is stored</li>
+<li>scale_in_src: name of the scale that will be used to render the src attribute</li>
+<li>sizes: the value of the sizes attribute in the output tag</li>
+<li>css_class: CSS classes added to the img tag</li>
+<li>additional attributes: any aditional attribute that will be rendered in the img tag, useful to add the title, alt, loading, fetchpriority, id, and other attributes.</li>
+</ul>
+<p>&#64;&#64;image_helper</p>
+<p>This view is designed for high-performance listings in Plone 6.
+It attempts to generate the <tt class="docutils literal">&lt;img&gt;</tt> tag using only catalog metadata (<tt class="docutils literal">image_scales</tt> attribute in brains), avoiding expensive <tt class="docutils literal">getObject()</tt> calls.
+If metadata is missing, it gracefully falls back to the standard <tt class="docutils literal">&#64;&#64;images</tt> view logic.</p>
+<p>You should use this view like this</p>
+<pre class="literal-block">
+&lt;tal:block tal:define=&quot;helper context/&#64;&#64;image_helper&quot;&gt;
+    &lt;div tal:replace=&quot;structure python:helper.srcset(item, fieldname='image', sizes='25vw', css_class='my-img')&quot; /&gt;
+&lt;/tal:block&gt;
+</pre>
+<p>Available methods:</p>
+<ul class="simple">
+<li><tt class="docutils literal">srcset(item, <span class="pre">fieldname='image',</span> **kwargs)</tt>: Returns a responsive <tt class="docutils literal">&lt;img&gt;</tt> tag with the <tt class="docutils literal">srcset</tt> attribute.</li>
+<li><tt class="docutils literal">tag(item, <span class="pre">fieldname='image',</span> scale=None, **kwargs)</tt>: Returns a fixed <tt class="docutils literal">&lt;img&gt;</tt> tag (optionally for a specific scale).</li>
+</ul>
+<p>Parameters:</p>
+<ul class="simple">
+<li><tt class="docutils literal">item</tt>: Either a catalog brain (recommended for performance) or a Plone object.</li>
+<li><tt class="docutils literal">fieldname</tt>: The name of the image field (default: <tt class="docutils literal">image</tt>).</li>
+<li><tt class="docutils literal">scale_in_src</tt>: (Only for the <tt class="docutils literal">srcset</tt> method) The name of the scale to use for the <tt class="docutils literal">src</tt> attribute (default: <tt class="docutils literal">huge</tt>).</li>
+<li><tt class="docutils literal">scale</tt>: (Only for the <tt class="docutils literal">tag</tt> method) The name of the scale to use for the <tt class="docutils literal">src</tt>.</li>
+<li><tt class="docutils literal">**kwargs</tt>: Any other HTML attributes (<tt class="docutils literal">alt</tt>, <tt class="docutils literal">title</tt>, <tt class="docutils literal">loading</tt>, <tt class="docutils literal">css_class</tt>, etc.).</li>
+</ul>
+<p>Note: Unlike standard Plone views, this helper does <strong>not</strong> provide default values for <tt class="docutils literal">alt</tt> or <tt class="docutils literal">loading</tt> attributes.
+Developers must provide them explicitly in the template if needed.
+However, it <strong>does</strong> automatically provide <tt class="docutils literal">width</tt> and <tt class="docutils literal">height</tt> based on the rendered scale to prevent layout shifts.</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation</h2>
+<p>Install cs.srcset by adding it to your buildout:</p>
+<pre class="literal-block">
+[buildout]
+
+...
+
+eggs =
+    cs.srcset
+</pre>
+<p>and then running <tt class="docutils literal">bin/buildout</tt></p>
+<p><strong>NOTE</strong>: You do not need to install the product in the Plone add-ons controlpanel, there is nothing to be installed.</p>
+</div>
+<div class="section" id="contribute">
+<h2>Contribute</h2>
+<ul class="simple">
+<li>Issue Tracker: <a class="reference external" href="https://github.com/codesyntax/cs.srcset/issues">https://github.com/codesyntax/cs.srcset/issues</a></li>
+<li>Source Code: <a class="reference external" href="https://github.com/codesyntax/cs.srcset">https://github.com/codesyntax/cs.srcset</a></li>
+</ul>
+</div>
+<div class="section" id="support">
+<h2>Support</h2>
+<p>If you are having issues, please let us know.</p>
+</div>
+<div class="section" id="license">
+<h2>License</h2>
+<p>The project is licensed under the GPLv2.</p>
+<div class="section" id="contributors">
+<h3>Contributors</h3>
+<ul class="simple">
+<li>Mikel Larreategi, <a class="reference external" href="mailto:mlarreategi&#64;codesyntax.com">mlarreategi&#64;codesyntax.com</a></li>
+</ul>
+</div>
+<div class="section" id="changelog">
+<h3>Changelog</h3>
+</div>
+</div>
+<div class="section" id="unreleased">
+<h2>2.0 (unreleased)</h2>
+<p>Breaking changes</p>
+<ul class="simple">
+<li>Remove Plone 5.2 and Python 3.7/3.8 as unsupported. &#64;erral ([#2](<a class="reference external" href="https://github.com/codesyntax/cs.srcset/pull/2">https://github.com/codesyntax/cs.srcset/pull/2</a>))</li>
+</ul>
+<p>New features</p>
+<ul class="simple">
+<li>Add a &#64;&#64;image-helper view to create image URLs from catalog metadata &#64;erral ([#2](<a class="reference external" href="https://github.com/codesyntax/cs.srcset/pull/2">https://github.com/codesyntax/cs.srcset/pull/2</a>))</li>
+</ul>
+</div>
+<div class="section" id="unreleased-1">
+<h2>1.2 (unreleased)</h2>
+<ul class="simple">
+<li>Nothing changed yet.</li>
+</ul>
+</div>
+<div class="section" id="section-1">
+<h2>1.1 (2025-10-14)</h2>
+<ul class="simple">
+<li>Add default width and heigth attributes if none provided when using the srcset method
+[erral]</li>
+</ul>
+</div>
+<div class="section" id="section-2">
+<h2>1.0 (2025-09-24)</h2>
+<ul class="simple">
+<li>Initial release.
+[codesyntax]</li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>
