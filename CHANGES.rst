@@ -1,3 +1,12 @@
+2.0.1 (2026-07-28)
+------------------
+
+Internal:
+
+
+- Format changelog @erral
+
+
 Changelog
 =========
 
